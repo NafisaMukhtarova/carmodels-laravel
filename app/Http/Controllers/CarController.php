@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\CarModel;
 use App\Models\BodyType;
 use App\Models\CarPhoto;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -19,6 +20,16 @@ class CarController extends Controller
 
     public function createCarSubmit(Request $request) 
     {
+        //Check authorisation
+        if(Auth::guest()) {
+            return redirect()->route('dashboard')->with('error','Необходима аlвторизация');
+        }
+
+        //Check Admin
+        if( auth()->user()->admin!= 1) {
+            return redirect()->route('home')->with('error','Добавить может только администратором');
+        }
+
         $this->validate($request,[
             'car_name'=>'required',
             'capacity'=>'integer'

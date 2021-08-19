@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CarBrand;
+use Illuminate\Support\Facades\Auth;
 
 class CarBrandController extends Controller
 {
@@ -21,6 +22,17 @@ class CarBrandController extends Controller
 
     public function createBrandSubmit(Request $req)
     {
+
+        //Check authorisation
+        if(Auth::guest()) {
+            return redirect()->route('dashboard')->with('error','Необходима аторизация');
+        }
+
+        //Check Admin
+        if( auth()->user()->admin!= 1) {
+            return redirect()->route('home')->with('error',' Бренд может быть добавлен только администратором');
+        }
+
         $filenameToStore = null;
 
         if(($req->hasFile('image'))) {

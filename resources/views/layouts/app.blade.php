@@ -34,10 +34,10 @@
         @include('inc.bar')
         @include('inc.messages')
         
-          <div class="container">
+        <div class="container">
+          @yield('content')
+        <div>
           
-            @yield('content')
-          <div>
     </div>
 </body>
 </html>

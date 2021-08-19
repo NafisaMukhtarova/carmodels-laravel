@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CarPhoto;
 
 
@@ -15,6 +16,16 @@ class CarPhotoController extends Controller
 
     public function createPhotoSubmit(Request $request)
     {
+        //Check authorisation
+        if(Auth::guest()) {
+            return redirect()->route('dashboard')->with('error','Необходима аlвторизация');
+        }
+
+        //Check Admin
+        if( auth()->user()->admin!= 1) {
+            return redirect()->route('home')->with('error','Добавить может только администратором');
+        }
+
         $filenameToStore = null;
 
         if(($request->hasFile('image'))) {

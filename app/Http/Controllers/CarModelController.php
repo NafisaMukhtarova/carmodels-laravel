@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CarModel;
 use App\Models\CarBrand;
 
@@ -22,6 +23,16 @@ class CarModelController extends Controller
 
     public function createModelSubmit(Request $req)
     {
+        //Check authorisation
+        if(Auth::guest()) {
+            return redirect()->route('dashboard')->with('error','Необходима аlвторизация');
+        }
+
+        //Check Admin
+        if( auth()->user()->admin!= 1) {
+            return redirect()->route('home')->with('error','Добавить может только администратором');
+        }
+
         $brand = new CarModel;
         $brand->car_brand_id = $req->input('brand_id');
         $brand->car_model_name = $req->input('model_name');
