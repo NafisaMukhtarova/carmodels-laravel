@@ -8,8 +8,8 @@
         
         @csrf
             <div class="mb-3">
-                 <label for="brand_name" class="form-label">Name</label>
-                <input type="text" class="form-control" inactive id="brand_name" name="brand_name" required >
+                 <label for="car_brand_name" class="form-label">Name</label>
+                <input type="text" class="form-control" inactive id="car_brand_name" name="car_brand_name" required >
             </div>
                 
              <div class="mb-3">

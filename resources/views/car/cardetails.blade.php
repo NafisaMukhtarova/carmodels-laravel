@@ -39,13 +39,13 @@
 
             <div class="mb-3">
                 <label for="yearissue" class="form-label">Year of issue</label>
-              <input type="number" class="form-control" value = {{$car->year_of_issue}} disabled>
+              <input type="number" class="form-control" disabled value = {{$car->year_of_issue}} >
             
           </div>
 
           <div class="mb-3">
                   <label for="yearend" class="form-label">Year end</label>
-                <input type="text" class="form-control" value = {{$car->year_end}} disabled>
+                <input type="text" disabled class="form-control" value = {{$car->year_end}} > 
               
             </div>
     </form>

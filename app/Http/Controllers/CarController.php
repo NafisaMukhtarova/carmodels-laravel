@@ -31,8 +31,10 @@ class CarController extends Controller
         }
 
         $this->validate($request,[
-            'car_name'=>'required',
-            'capacity'=>'integer'
+            'car_name'=>'required|unique:cars|max:200',
+            'capacity'=>'integer',
+            'bodytype'=>'required',
+            'yearissue'=>'required'    
         ]);
 
         $car = new Car;

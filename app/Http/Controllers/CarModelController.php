@@ -33,9 +33,13 @@ class CarModelController extends Controller
             return redirect()->route('home')->with('error','Добавить может только администратором');
         }
 
+        $this->validate($req,[
+            'car_model_name'=>'required|unique:car_models|max:100',
+        ]);
+
         $brand = new CarModel;
         $brand->car_brand_id = $req->input('brand_id');
-        $brand->car_model_name = $req->input('model_name');
+        $brand->car_model_name = $req->input('car_model_name');
         $brand->save();
         return redirect()->route('car-brand',$req->input('brand_id'))->with('success','Модель была добавлена');  
 

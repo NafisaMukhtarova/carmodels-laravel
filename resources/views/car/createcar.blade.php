@@ -44,8 +44,8 @@
 
             <div class="mb-3">
                 <label for="yearissue" class="form-label">Year of issue</label>
-              <input type="number" class="form-control" inactive id="yearissue" name="yearissue" required
-                                 placeholder="YYYY" min ="1900" max = "2050">
+              <input type="number" class="form-control" inactive id="yearissue" name="yearissue" 
+                                 placeholder="YYYY" min ="1900" max = "2050" required>
             
           </div>
 

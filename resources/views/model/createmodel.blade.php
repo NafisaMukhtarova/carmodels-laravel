@@ -13,8 +13,8 @@
         
         @csrf
             <div class="mb-3">
-                 <label for="model_name" class="form-label">Model name</label>
-                <input type="text" class="form-control" inactive id="model_name" name="model_name" required >
+                 <label for="car_model_name" class="form-label">Model name</label>
+                <input type="text" class="form-control" inactive id="car_model_name" name="car_model_name" required >
                 <input type="hidden" id="brand_id" name="brand_id" value = {{$brand->id}}>    
             </div>
             

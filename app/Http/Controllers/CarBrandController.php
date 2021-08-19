@@ -22,6 +22,7 @@ class CarBrandController extends Controller
 
     public function createBrandSubmit(Request $req)
     {
+        
 
         //Check authorisation
         if(Auth::guest()) {
@@ -32,6 +33,11 @@ class CarBrandController extends Controller
         if( auth()->user()->admin!= 1) {
             return redirect()->route('home')->with('error',' Бренд может быть добавлен только администратором');
         }
+
+        $this->validate($req,[
+            'car_brand_name'=>'required|unique:car_brands|max:100',
+            'brand_photo'=>'image'           
+        ]);
 
         $filenameToStore = null;
 
@@ -53,7 +59,7 @@ class CarBrandController extends Controller
         }
 
         $brand = new CarBrand;
-        $brand->car_brand_name = $req->input('brand_name');
+        $brand->car_brand_name = $req->input('car_brand_name');
         $brand->brand_photo = $filenameToStore;
 
         $brand->save();
